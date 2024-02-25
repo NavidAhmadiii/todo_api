@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.response import Response
@@ -20,5 +21,5 @@ class DetailTodo(generics.RetrieveAPIView):
             post = self.get_object()
             post.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
-        except:
+        except ObjectDoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
